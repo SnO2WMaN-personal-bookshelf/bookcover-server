@@ -1,0 +1,12 @@
+node_modules/
+
+npm-*.log
+
+yarn-*.log
+
+coverage/
+
+.env*
+!.env.example
+
+dist/
