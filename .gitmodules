@@ -1,0 +1,3 @@
+[submodule "compensator"]
+	path = compensator
+	url = git@github.com:SnO2WMaN-personal-bookshelf/compensator.git
