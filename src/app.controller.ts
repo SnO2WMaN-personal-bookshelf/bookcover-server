@@ -1,4 +1,5 @@
-import {Controller, Get, Query} from '@nestjs/common';
+import {Controller, Get, Query, Res} from '@nestjs/common';
+import {Response} from 'express';
 import {BooksService} from './books/books.service';
 
 @Controller()
@@ -6,7 +7,9 @@ export class AppController {
   constructor(private readonly bookService: BooksService) {}
 
   @Get()
-  async findAll(@Query('id') id: string): Promise<string> {
-    return this.bookService.getCover(id);
+  async image(@Query('id') id: string, @Res() res: Response) {
+    return this.bookService.getCover(id).then((url) => {
+      res.redirect(url);
+    });
   }
 }
