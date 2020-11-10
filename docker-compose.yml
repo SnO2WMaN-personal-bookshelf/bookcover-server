@@ -1,9 +1,0 @@
-version: '3.7'
-
-services:
-  compensator:
-    build:
-      context: ./compensator
-      dockerfile: Dockerfile
-    ports:
-      - ${COMPENSATOR_PORT}:3000

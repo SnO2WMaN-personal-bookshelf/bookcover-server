@@ -1,3 +1,6 @@
-[submodule "compensator"]
-	path = compensator
+[submodule "docker/compensator"]
+	path = docker/compensator
 	url = git@github.com:SnO2WMaN-personal-bookshelf/compensator.git
+[submodule "docker/mongo/sample"]
+	path = docker/mongo/sample
+	url = git@github.com:SnO2WMaN-personal-bookshelf/sample-data.git

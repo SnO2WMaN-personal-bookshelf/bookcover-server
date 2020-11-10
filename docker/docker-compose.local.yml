@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  books-database:
+    image: mongo:4
+    environment:
+      TZ: Asia/Tokyo
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_DATABASE}
+    volumes:
+      - ./mongo/initdb:/docker-entrypoint-initdb.d
+      - ./mongo/sample/output:/sample
+    ports:
+      - ${MONGO_PORT}:27017
+
+  compensator:
+    build:
+      context: ./compensator
+      dockerfile: Dockerfile
+    ports:
+      - ${COMPENSATOR_PORT}:3000
