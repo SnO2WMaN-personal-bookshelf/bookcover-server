@@ -13,7 +13,7 @@ ENV NODE_ENV production
 
 COPY package.json yarn.lock ./
 
-COPY --from=build dist ./
+COPY --from=build dist dist
 
 RUN yarn install --frozen-lockfile --production
 
