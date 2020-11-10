@@ -1,22 +1,21 @@
 FROM node:14 AS build
 
-COPY package.json package.json
-COPY yarn.lock yarn.lock
-COPY tsconfig.json tsconfig.json
-COPY tsconfig.build.json tsconfig.build.json
-COPY src src
+COPY package.json yarn.lock ./
+COPY tsconfig.json tsconfig.build.json ./
+COPY src ./
 
 RUN yarn install --frozen-lockfile
 RUN yarn build
 
 FROM node:14
 
-COPY package.json package.json
-COPY yarn.lock yarn.lock
+ENV NODE_ENV production
 
-COPY --from=build dist dist
+COPY package.json yarn.lock ./
+
+COPY --from=build dist ./
 
 RUN yarn install --frozen-lockfile --production
 
 EXPOSE 4000
-CMD [ "yarn", "start:prod" ]
+CMD [ "node", "dist/main.js" ]
